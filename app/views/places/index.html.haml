@@ -1,0 +1,41 @@
+.site-wrapper
+  .site-wrapper-inner
+    .cover-container
+      .masthead.clearfix
+        .inner
+          %h3.masthead-brand Map
+          %nav
+            %ul.nav.masthead-nav
+              %li.active
+                %a{:href => "#"} Home
+              %li
+                %a{:href => "#"} Features
+              %li
+                %a{:href => "#"} Contact
+
+      .inner.cover
+        -# %h1.cover-heading Listing
+        %p.lead Description
+
+    %script{:src => "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry", :type => "text/javascript"}
+    %script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", :type => "text/javascript"}
+
+    #map
+      %script{:charset => "utf-8", :type => "text/javascript"}
+        handler = Gmaps.build('Google');
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(#{raw @hash.to_json});
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        });
+   
+    .mastfoot
+      .inner
+        %p
+          &copy;
+          = succeed " #{Date.today.year}," do
+            %a{:href => "#{root_path}"} Maps
+
+          Data organized by
+          = succeed "." do
+            Crudo

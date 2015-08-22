@@ -43,3 +43,7 @@ group :development, :test do
   gem 'spring'
 end
 
+gem "haml-rails"
+gem "erb2haml"
+gem "gmaps4rails"
+gem "geocoder"
