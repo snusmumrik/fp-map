@@ -11,7 +11,7 @@ class Place < ActiveRecord::Base
   scope :search_with_keyword, ->(keyword) { where(["name LIKE ? OR address LIKE ?", "%#{keyword}%", "%#{keyword}%"]) }
   scope :search_with_category, ->(category) { where(["category = ?", category]) }
 
-  paginates_per 100
+  paginates_per 50
 
   def self.search(domain = "http://www.p-shouhinken.com/", path = "fukuoka/shop/", prefecture = "福岡県福岡市")
     agent = Mechanize.new

@@ -13,15 +13,15 @@
     = javascript_include_tag 'application', "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+    %nav.navbar.navbar-default{:role => "navigation"}
       .container
         .navbar-header
           / The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation
-          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
+          -# %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          -#   %span.sr-only Toggle navigation
+          -#   %span.icon-bar
+          -#   %span.icon-bar
+          -#   %span.icon-bar
           %div.navbar-brand{data:{no_turbolink: true}}= link_to "福岡市プレミアム商品券マップ", root_path
 
         / Note that the .navbar-collapse and .collapse classes have been removed from the #navbar
