@@ -9,6 +9,11 @@ class PlacesController < ApplicationController
       @categories << [c.name, c.name]
     end
 
+    keywords = Array.new
+    keywords << params[:category] unless params[:category].blank?
+    keywords << params[:keyword] unless params[:keyword].blank?
+    @keyword = keywords.join(",")
+
     if params[:category].blank?
       if params[:keyword].blank?
         @places = Place.page params[:page]

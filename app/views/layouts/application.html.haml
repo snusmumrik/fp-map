@@ -1,17 +1,29 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %meta{:content => "福岡プレミアム商品券の使えるお店を地図で表示しています。", :name => "description"}
+    %meta{:content => "福岡,プレミアム,商品券,地図,マップ,#{@keyword}", :name => "keyword"}
+    %meta{:content => "", :name => "author"}
     %title 福岡市プレミアム商品券マップ
     = stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true
     = javascript_include_tag 'application', "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top
+    %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
       .container
         .navbar-header
           / The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation
-          %a.navbar-brand{:href => "/"} 福岡市プレミアム商品券マップ
+          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %div.navbar-brand{data:{no_turbolink: true}}= link_to "福岡市プレミアム商品券マップ", root_path
+
         / Note that the .navbar-collapse and .collapse classes have been removed from the #navbar
         #navbar
           %ul.nav.navbar-nav
@@ -49,11 +61,18 @@
             %ul.nav.navbar-nav.navbar-left
               %li= paginate @places, remote: false
               
-          -# %ul.nav.navbar-nav.navbar-right
-          -#   %li
-          -#     = link_to "About", "/about"
-            -# %li
-            -#   %a{:href => "#"} Contact
+            -# %ul.nav.navbar-nav.navbar-right
+            -#   %li
+            -#     = link_to "About", "/about"
+            -#   %li
+            -#     %a{:href => "#"} Contact
+
+    .ad
+      %script{:async => "", :src => "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}
+        / fp-map.crudoe.com responsible
+      %ins.adsbygoogle{"data-ad-client" => "ca-pub-9916693973832627", "data-ad-format" => "auto", "data-ad-slot" => "6189909932", :style => "display:block"}
+      :javascript
+        (adsbygoogle = window.adsbygoogle || []).push({});
 
     = yield
 
