@@ -4,11 +4,29 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    @categories = Array.new
+    Category.all.each do |c|
+      @categories << [c.name, c.name]
+    end
+
+    if params[:category].blank?
+      if params[:keyword].blank?
+        @places = Place.page params[:page]
+      else
+        @places = Place.search_with_keyword(params[:keyword]).page params[:page]
+      end
+    else
+      if params[:keyword].blank?
+        @places = Place.search_with_category(params[:category]).page params[:page]
+      else
+        @places = Place.search_with_category(params[:category]).search_with_keyword(params[:keyword]).page params[:page]
+      end
+    end
+
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      marker.infowindow place.category
+      marker.infowindow "#{place.name}<br>(#{place.category})<br>#{place.address}"
       marker.json({title: place.name})
     end
   end

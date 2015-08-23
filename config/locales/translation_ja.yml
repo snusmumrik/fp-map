@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      place: place  #g
+
+    attributes:
+      place:
+        address: 住所
+        category: カテゴリー
+        latitude: 緯度
+        longitude: 経度
+        name: 名称
+        tel: 電話番号
+        url: url  #g
+
+  links:
+    search: 検索
+
+  views:
+    keyword: キーワード
+
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "前"
+      next: "次"
+      truncate: "..."
